@@ -1,0 +1,27 @@
+# permissions for end users to view gitlabs.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: gitlab-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: gitlab-operator
+    app.kubernetes.io/part-of: gitlab-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: gitlab-viewer-role
+rules:
+- apiGroups:
+  - apps.mycompany.com
+  resources:
+  - gitlabs
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - apps.mycompany.com
+  resources:
+  - gitlabs/status
+  verbs:
+  - get
