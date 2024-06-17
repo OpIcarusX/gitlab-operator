@@ -35,7 +35,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/webhook"
 
 	appsv1alpha1 "github.com/OpIcarusX/gitlab-operator/api/v1alpha1"
-	"github.com/OpIcarusX/gitlab-operator/internal/controller"
+	controllers "github.com/OpIcarusX/gitlab-operator/internal/controller"
 	//+kubebuilder:scaffold:imports
 )
 
@@ -122,7 +122,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	if err = (&controller.GitlabReconciler{
+	if err = (&controllers.GitlabReconciler{
 		Client: mgr.GetClient(),
 		Scheme: mgr.GetScheme(),
 	}).SetupWithManager(mgr); err != nil {
